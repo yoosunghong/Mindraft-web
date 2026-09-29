@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "mindraft-preview", "runtimeExecutable": "node", "runtimeArgs": ["--env-file=.runtime/preview.env", "server.js"], "port": 3311 }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules
+data
+.runtime
+.claude
+test
+*.log
+.env*
+docs

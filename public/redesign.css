@@ -89,7 +89,8 @@ main { width: min(100%, 1230px); margin: 0 auto; padding: 46px 52px 34px; }
 .game-card-copy { display: block; width: 100%; }
 .game-card h3 { font-size: 15px; letter-spacing: -.04em; white-space: normal; }
 .game-card p { margin: 4px 0 0; color: #8b9aab; font-size: 11px; white-space: normal; line-height: 1.4; }
-.game-arrow { position: absolute; right: 17px; top: 18px; color: #99aec9; font-size: 16px; }
+.game-arrow { position: absolute; right: 17px; top: 18px; color: #6e94c3; font-size: 10px; font-weight: 700; }
+.game-card:hover .game-arrow { color: #2769d4; }
 .community-details { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 32px; }
 .community-details > summary { display: flex; align-items: center; justify-content: space-between; gap: 14px; list-style: none; cursor: pointer; padding: 23px 4px; }
 .community-details > summary::-webkit-details-marker { display: none; }
@@ -129,6 +130,25 @@ main { width: min(100%, 1230px); margin: 0 auto; padding: 46px 52px 34px; }
 .opponent-stage, .machine, .shop-display { background: #f8fbff; }
 .modal-backdrop { background: #1c365966; }
 .modal { background: white; border-radius: 22px; box-shadow: 0 25px 80px #1f42612e; }
+.game-guide-modal .guide-modal-art { display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; margin-bottom: 22px; border-radius: 19px; background: #f0f6ff; }
+.game-guide-modal .guide-modal-art img { width: 66px; height: 66px; object-fit: contain; }
+.game-guide-modal h2 { font-size: 27px; margin: 7px 0 6px; }
+.game-guide-modal .guide-lead { color: #607995; font-size: 14px; line-height: 1.7; }
+.game-guide-modal ol { list-style: none; display: grid; gap: 13px; padding: 0; margin: 24px 0 20px; }
+.game-guide-modal li { display: flex; align-items: flex-start; gap: 13px; }
+.game-guide-modal li span { display: inline-grid; place-items: center; flex: 0 0 27px; height: 27px; border-radius: 50%; background: #eaf3ff; color: #2769d4; font-size: 12px; font-weight: 800; }
+.game-guide-modal li p { color: #344e6b; font-size: 13px; line-height: 1.65; padding-top: 2px; }
+.game-guide-modal .guide-tip { padding: 13px 15px; border-radius: 11px; background: #f7faff; color: #56728f; font-size: 12px; line-height: 1.65; }
+.game-guide-modal .primary.full { margin: 22px 0 0; }
+.game-guide-banner { display: flex; align-items: flex-start; gap: 22px; padding: 23px 26px; margin-bottom: 25px; border: 1px solid #dceafd; border-radius: 18px; background: linear-gradient(105deg, #f1f7ff, #fff 80%); }
+.game-guide-banner .guide-art { flex: 0 0 68px; display: grid; place-items: center; width: 68px; height: 68px; border-radius: 16px; background: white; }
+.game-guide-banner .guide-art img { width: 58px; height: 58px; object-fit: contain; }
+.game-guide-banner .guide-copy { flex: 1; min-width: 0; }
+.game-guide-banner h2 { margin: 4px 0 5px; font-size: 19px; }
+.game-guide-banner p { color: #627c99; font-size: 13px; }
+.game-guide-banner ol { display: flex; flex-wrap: wrap; gap: 5px 20px; margin: 14px 0 0; padding-left: 18px; color: #55718f; font-size: 12px; line-height: 1.65; }
+.game-guide-banner li { padding-left: 1px; }
+.game-guide-banner > button { white-space: nowrap; font-size: 11px; }
 input, select, .quest-form textarea { border-color: #dce6f2; border-radius: 10px; color: #314966; }
 input::placeholder { color: #9badc0; }
 .avatar-picker > button, .mode-option, .consent { background: #f7faff; border-color: #e3edf9; border-radius: 11px; }
@@ -161,6 +181,11 @@ input::placeholder { color: #9badc0; }
   .content-layout.with-people { display: block; }
   .content-layout.with-people .online-panel { border-left: 0; border-top: 1px solid var(--line); }
   .home-hero { min-height: 350px; }
+  .game-guide-banner { display: grid; grid-template-columns: 68px minmax(0, 1fr); gap: 8px 18px; }
+  .game-guide-banner .guide-art { grid-column: 1; }
+  .game-guide-banner .guide-copy, .game-guide-banner > button { grid-column: 2; }
+  .game-guide-banner ol { display: block; line-height: 1.8; }
+  .game-guide-banner > button { justify-self: start; margin: 5px 0 0; }
 }
 
 @media (max-width: 640px) {
@@ -201,6 +226,13 @@ input::placeholder { color: #9badc0; }
   .game-card h3, .game-card:last-child h3 { font-size: 13px; }
   .game-card p, .game-card:last-child p { font-size: 10px; margin: 4px 0 0; }
   .game-arrow { top: 13px; right: 13px; }
+  .game-guide-banner { grid-template-columns: 52px minmax(0, 1fr); gap: 12px; padding: 19px; }
+  .game-guide-banner .guide-art { flex-basis: 52px; width: 52px; height: 52px; }
+  .game-guide-banner .guide-art img { width: 47px; height: 47px; }
+  .game-guide-banner h2 { font-size: 17px; }
+  .game-guide-banner ol { display: block; margin-top: 10px; line-height: 1.8; }
+  .game-guide-banner > button { margin-left: 0; }
+  .game-guide-modal h2 { font-size: 23px; }
   .game-section { margin-bottom: 36px; }
   .community-details > summary b { font-size: 14px; }
   .community-details > summary small { font-size: 10px; }

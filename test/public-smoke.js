@@ -6,7 +6,7 @@ const clients=[];
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn){for(let i=0;i<100;i++){if(fn())return;await wait(100);}throw Error('Public state synchronization timed out');}
 async function client(name){
-  const response=await fetch(url+'/api/session',{method:'POST',headers:{'Content-Type':'application/json',Origin:url},body:JSON.stringify({name})});assert.equal(response.status,200);
+  const response=await fetch(url+'/api/session',{method:'POST',headers:{'Content-Type':'application/json',Origin:url},body:JSON.stringify({name,consent:true})});assert.equal(response.status,200);
   const {token,profile}=await response.json();const socket=io(url,{transports:['websocket'],auth:{token},extraHeaders:{Origin:url},reconnection:false});
   const c={socket,profile};clients.push(c);for(const event of['lobby','room','match','invite'])socket.on(event,data=>c[event]=data);
   await new Promise((resolve,reject)=>{socket.once('connect',resolve);socket.once('connect_error',reject);});
@@ -25,5 +25,5 @@ try{
   assert.equal((await a.send('match:answer',{matchId:a.match.id,index:0,answer})).ok,true);
   await until(()=>b.match.players.find(p=>p.id===a.profile.id).score>0);
   await a.send('room:leave');await b.send('room:leave');
-  console.log('PASS HTTPS, authenticated WSS, presence, invite, join, readiness, shared start, server score, peer synchronization, cleanup');
+  console.log('PASS authenticated socket, presence, invite, join, readiness, shared start, server score, peer synchronization, cleanup');
 }finally{for(const c of clients){if(c.socket.connected&&c.send)await c.send('room:leave').catch(()=>{});c.socket.disconnect();}}

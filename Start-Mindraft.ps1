@@ -27,6 +27,8 @@ if (-not $state.ContainsKey('server')) {
     if ($existing) { throw 'Port 3210 is already serving an untracked process. Stop that process before running this script.' }
     $nodePath = (Get-Command node.exe -ErrorAction Stop).Source
     if (-not (Test-Path (Join-Path $projectDir 'node_modules'))) { throw 'Run npm install first.' }
+    & npm run build:client
+    if ($LASTEXITCODE -ne 0) { throw 'Firebase client bundle build failed.' }
     Start-TrackedProcess 'server' $nodePath 'server.js'
     $healthy = $false
     for ($attempt=0; $attempt -lt 20; $attempt++) {

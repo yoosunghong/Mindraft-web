@@ -1,0 +1,10 @@
+.git/
+.claude/
+.runtime/
+node_modules/
+data/
+test/
+docs/
+*.log
+.env*
+public/firebase-auth.js

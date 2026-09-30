@@ -27,3 +27,6 @@
 @media(max-width:1250px){.journey{grid-template-columns:repeat(3,1fr)}.quad-grid{grid-template-columns:1fr 1fr}.job-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.bug-lab{grid-template-columns:1fr}.code{grid-column:1;grid-row:auto}.job-card{flex-direction:column;align-items:flex-start}}
 @media(max-width:540px){.journey{grid-template-columns:1fr 1fr}.quad-grid{grid-template-columns:1fr}.job-grid{grid-template-columns:1fr}.help-chip{display:none}.evidence{grid-template-columns:48px 1fr}.evidence small{grid-column:2}}
+.auth-chip{font-size:10px;color:#36624b;border:1px solid #cbdcc9;background:#f3f8ef;border-radius:20px;padding:6px 10px;white-space:nowrap}
+@media(max-width:760px){.header-right{gap:8px}.auth-chip{font-size:9px;padding:5px 7px}}
+@media(max-width:540px){.topbar{padding:0 10px}.breadcrumb{display:none}.auth-chip{display:inline-flex}}

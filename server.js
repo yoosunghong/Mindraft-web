@@ -81,7 +81,7 @@ export function createApp({dataDir=process.env.DATA_DIR||path.join(root,'data'),
     broadcast();
   }
   app.disable('x-powered-by');
-  app.use((req,res,next)=>{res.set({'X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws: wss: https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; frame-src https://accounts.google.com https://*.firebaseapp.com; frame-ancestors 'none'; base-uri 'none'"});next();});
+  app.use((req,res,next)=>{res.set({'X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin','Content-Security-Policy':"default-src 'self'; script-src 'self' https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' ws: wss: https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://www.googleapis.com https://apis.google.com; frame-src https://accounts.google.com https://apis.google.com https://*.firebaseapp.com https://content.googleapis.com; frame-ancestors 'none'; base-uri 'none'"});next();});
   app.use(express.json({limit:'4kb'}));
   app.get('/api/health',async(_,res)=>res.json({ok:true,online:online.size,rooms:rooms.size,ai:await aiEnabled()}));
   app.get('/api/firebase-config',(_,res)=>res.json(process.env.FIREBASE_API_KEY&&process.env.FIREBASE_APP_ID&&process.env.GOOGLE_CLOUD_PROJECT?{

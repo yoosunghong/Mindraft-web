@@ -5,7 +5,7 @@
 **경험 → 행동 데이터 → 자기이해 → 직업 탐색 → 현실 행동**
 
 - 공모전: 2026 AI·디지털 기반 사회문제 해결 챌린지 · 분야 ① ‘민관협력 지원 플랫폼 활용’ 기반 사회현안 해결 **서비스 개발**
-- 서비스 주소: **https://mindraft.yoosung.dev** · Cloud Run 직접 주소: **https://mindraft-772237580154.asia-northeast3.run.app** · 로컬: **http://localhost:3210**
+- 서비스 주소: **https://mindraft.yoosung.dev** (현재 PC의 Cloudflare Tunnel) · Cloud Run 직접 주소: **https://mindraft-772237580154.asia-northeast3.run.app** · 로컬: **http://localhost:3210**
 - 공모전 제출 문서: [docs/](docs/)
 
 ## 서비스 흐름 (STEP 1~5)
@@ -20,19 +20,25 @@
 
 안전장치: 진단·적합도 표현 금지(AI 시스템 프롬프트 포함), 상시 "도움 연결"(109·1577-0199·129·1388, 청년미래센터 안내), 기록 활용 동의, 가명 처리된 AI 입력, 본인 플레이 기록 삭제. 계정별 AI 사용 횟수는 남용 방지를 위해 유지합니다.
 
-## 실행 / 중지
+## 내 PC에서 실행 / 중지
 
-Node.js 22 이상이 필요합니다. 공개 도메인은 Cloudflare Worker를 통해 Cloud Run으로 연결됩니다. 아래 명령은 로컬 개발용입니다.
+Node.js 22 이상, `cloudflared`, 그리고 `.runtime/tunnel.yml` 및 tunnel credentials 파일이 필요합니다. 이 PC에서는 `Start-Mindraft-Public.bat`을 더블클릭하면 서버와 기존 `mindraft-web` Cloudflare Tunnel을 실행합니다. PowerShell을 직접 열어 실행해도 됩니다.
 
 ```powershell
 cd D:\Github\Mindraft-web
 npm install --cache .runtime/npm-cache
-.\Start-Mindraft.ps1 -LocalOnly # 로컬 서버만
+.\Start-Mindraft.ps1             # PC 서버 + Cloudflare Tunnel
+.\Start-Mindraft.ps1 -LocalOnly  # 로컬 접속만
 .\Stop-Mindraft.ps1
-.\Start-Mindraft.ps1            # 로컬 서버 + 예전 Cloudflare Tunnel (필요할 때만)
 npm run dev                     # 개발용 전경 실행 (기존 서버 먼저 중지)
 npm test                        # 21개 테스트
 ```
+
+실행 후 로컬 주소는 `http://localhost:3210`, 공개 주소는 `https://mindraft.yoosung.dev`입니다. 중지할 때는 `Stop-Mindraft.ps1`을 실행하세요. 실행 로그는 `.runtime/server.log`, `.runtime/tunnel.log`에 기록됩니다.
+
+### Cloudflare 라우팅 전환
+
+현재 도메인은 Cloudflare DNS의 `mindraft-web` 터널 경로를 통해 이 PC로 연결됩니다. 이 구성을 쓰려면 PC가 켜져 있고 서버와 터널이 실행 중이어야 합니다. Cloud Run으로 되돌릴 때는 Cloudflare 대시보드에서 `mindraft-cloud-run-proxy` Worker에 `mindraft.yoosung.dev/*` Route를 다시 연결하고, 터널 DNS 경로를 제거하세요. Worker 코드는 [cloudflare/worker.js](cloudflare/worker.js)에 있습니다.
 
 ### 환경 변수
 
@@ -90,9 +96,9 @@ docker run -d -p 3210:3210 -v mindraft-data:/data -e DATA_BACKEND=local -e ALLOW
 
 ## Cloudflare 도메인 연결
 
-`mindraft.yoosung.dev/*`는 Worker `mindraft-cloud-run-proxy`를 통해 서울 Cloud Run으로 전달합니다. Worker 코드는 [cloudflare/worker.js](cloudflare/worker.js)에 있습니다. Firebase Authentication의 승인된 도메인에도 `mindraft.yoosung.dev`가 등록되어 있습니다. 공개 서비스 이용에 로컬 PC나 로컬 터널 실행은 필요하지 않습니다.
+현재 `mindraft.yoosung.dev`는 `mindraft-web` Cloudflare Tunnel을 통해 이 PC의 `http://127.0.0.1:3210`으로 연결됩니다. Cloudflare Worker `mindraft-cloud-run-proxy`의 `mindraft.yoosung.dev/*` Route는 비활성화했습니다. Cloud Run 서비스와 Worker 코드([cloudflare/worker.js](cloudflare/worker.js))는 남아 있으며, Cloud Run으로 되돌릴 때는 Worker Route를 다시 연결하고 터널 경로를 해제해야 합니다. Firebase Authentication의 승인된 도메인에는 `mindraft.yoosung.dev`가 등록되어 있습니다.
 
-### 예전 로컬 터널 설정
+### 로컬 터널 설정
 
 터널 이름: `mindraft-web`, ID: `94449648-004e-4731-b2c5-060c76cd8a8c`. 현재 PC의 `.runtime/tunnel.yml`과 `.runtime/tunnel-credentials.json`에 설정이 있으며 인증 파일은 Git에서 제외했습니다.
 
@@ -112,4 +118,4 @@ cloudflared tunnel info mindraft-web
 Get-Content .runtime/server-error.log -Tail 30
 ```
 
-위 터널 설정은 로컬 작업용으로 남아 있습니다. 현재 공개 도메인 요청은 Worker 경로를 우선 사용합니다.
+위 터널 설정은 현재 공개 도메인에 사용 중입니다. PC가 켜져 있고 서버와 터널이 실행되어 있어야 외부 접속이 가능합니다.

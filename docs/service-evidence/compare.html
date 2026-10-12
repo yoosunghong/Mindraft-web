@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Mindraft 유사 서비스 비교</title>
+<style>
+@font-face{font-family:'NotoKR';src:url('file:///C:/Windows/Fonts/NotoSansKR-VF.ttf');font-weight:100 900}
+:root{--ink:#0f172a;--mut:#5b6b82;--line:#dbe3ef;--bg:#f4f7fc;--blue:#2563eb;--blue-d:#1d4ed8;--now:#047857;--now-bg:#d9f5e8;--plan:#a15c07;--plan-bg:#fdf0d2}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-family:'NotoKR','Malgun Gothic',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-size:8.4pt;line-height:1.45;background:#fff}
+.page{width:210mm;height:297mm;padding:10mm 11mm 9mm;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:4mm}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.6pt solid var(--blue);padding-bottom:2mm}
+.top h1{font-size:17pt;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.top h1 small{display:block;font-size:8.2pt;font-weight:500;color:var(--mut);letter-spacing:0;margin-top:.6mm}
+.top .meta{text-align:right;font-size:7.2pt;color:var(--mut);line-height:1.5}
+.top .meta b{color:var(--ink)}
+h2{font-size:10.6pt;font-weight:800;display:flex;align-items:center;gap:2mm}
+h2 .n{background:var(--blue);color:#fff;border-radius:1.4mm;font-size:8pt;width:5.2mm;height:5.2mm;display:inline-flex;align-items:center;justify-content:center}
+h2 .sub{font-size:7.4pt;color:var(--mut);font-weight:500;margin-left:auto}
+.lead{background:var(--bg);border-left:1.4mm solid var(--blue);border-radius:1mm;padding:2mm 3mm;font-size:8.4pt;line-height:1.55}
+.lead b{color:var(--blue-d)}
+table{width:100%;border-collapse:collapse;font-size:7.7pt}
+th,td{border:.6pt solid var(--line);padding:1.5mm 1.8mm;text-align:left;vertical-align:top;line-height:1.4}
+th{background:var(--bg);font-weight:800;font-size:7.4pt}
+td.k{font-weight:800;background:#fafcff}
+td.k small{display:block;font-weight:500;color:var(--mut);font-size:6.7pt}
+tr.me td{background:#eaf1ff;border-color:#9db9ee}
+tr.me td.k{color:var(--blue-d)}
+.tag{display:inline-block;font-size:6.4pt;font-weight:700;border-radius:2mm;padding:.15mm 1.6mm;vertical-align:1px;white-space:nowrap}
+.tag.now{background:var(--now-bg);color:var(--now)}
+.tag.plan{background:var(--plan-bg);color:var(--plan)}
+.row{display:grid;gap:3mm}.c2{grid-template-columns:1.08fr 1fr}
+.box{border:.7pt solid var(--line);border-radius:2mm;padding:2mm 2.4mm}
+.box h4{font-size:7.8pt;font-weight:800;margin-bottom:1mm;color:var(--blue-d)}
+ul.tight{list-style:none;font-size:7.6pt;line-height:1.45}
+ul.tight li{padding-left:2.6mm;position:relative;margin-bottom:1mm}
+ul.tight li::before{content:'';position:absolute;left:.2mm;top:1.5mm;width:1.2mm;height:1.2mm;border-radius:50%;background:var(--blue)}
+ul.tight b{font-weight:800}
+.map{border:.7pt solid var(--line);border-radius:2mm;background:#fbfcff;padding:1mm}
+.map svg{display:block;width:100%;height:auto}
+.note{font-size:6.5pt;color:var(--mut);line-height:1.45}
+.src{font-size:6.2pt;color:var(--mut);line-height:1.45;margin-top:auto;border-top:.6pt solid var(--line);padding-top:1.2mm}
+.src b{color:var(--ink)}
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="top">
+    <h1>유사 서비스 비교<small>Mindraft와 청년 진로·취업 지원 서비스의 차이 · 대체가 아니라 ‘이전 단계’를 채우는 서비스</small></h1>
+    <div class="meta"><b>기준일 2026-09-30</b><br>공개 자료·공식 사이트 기준<br>Mindraft는 현재 구현 범위만 표기</div>
+  </div>
+
+  <div class="lead">기존 서비스는 <b>①문항 응답형 검사</b>, <b>②정책 정보 검색</b>, <b>③기관 방문형 프로그램</b>, <b>④기업 채용용 게임 평가</b>로 나뉩니다. 집에 머무는 청년이 <b>부담 없이 직접 해 보고, 그 행동을 근거로 자신을 이해한 뒤 작은 실천과 기관 연결로 이어가는 저강도 온라인 진입로</b>는 비어 있습니다. Mindraft는 그 지점에 있습니다.</div>
+
+  <h2><span class="n">1</span>서비스별 비교 <span class="sub">각 서비스의 주된 목적 기준. 우열이 아니라 역할의 차이입니다.</span></h2>
+  <table>
+    <tr><th style="width:15%">서비스</th><th style="width:15%">주 목적·이용 방식</th><th style="width:19%">자기이해 방식</th><th style="width:17%">결과 표현</th><th style="width:16%">이후 행동 연결</th><th>고립 청년 접근성</th></tr>
+    <tr><td class="k">커리어넷 진로심리검사<small>교육부·한국직업능력연구원</small></td><td>흥미·적성·가치관·진로성숙도 등 심리검사(무료 온라인)</td><td>문항에 응답하는 검사(1회 단위)</td><td>검사 결과와 해석 자료</td><td>직업정보 열람, 해석 상담 가이드 제공</td><td>온라인·무료. 문항 응답 중심의 검사</td></tr>
+    <tr><td class="k">고용24 직업심리검사<small>고용노동부·한국고용정보원</small></td><td>직업선호도검사(L·S형) 등. 무료 온라인, 고용센터 상담 연계</td><td>좋아하는 활동·관심 직업·성격 등을 묻는 문항 응답</td><td>직업흥미유형에 맞는 직업 안내</td><td>고용센터 해석 상담, 구직 서비스</td><td>온라인 가능. 결과는 구직·상담 연계 중심</td></tr>
+    <tr><td class="k">온통청년<small>국무조정실 청년정책 통합 플랫폼</small></td><td>중앙·지자체 청년정책 3,000여 개 검색, 맞춤 검색, AI 챗봇, 상담</td><td>자기이해가 아니라 조건(지역·소득 등) 입력으로 정책 검색</td><td>정책·신청 자격 정보</td><td>정책 신청, 분야별 상담</td><td>온라인. 정책 정보 탐색·신청이 주 기능</td></tr>
+    <tr><td class="k">청년도전지원사업·청년미래센터<small>고용노동부 · 보건복지부</small></td><td>구직단념·고립·은둔 청년 대상 대면·프로그램형 지원(도전지원: 참여수당)</td><td>상담·프로그램 참여</td><td>상담 기록, 참여 성과</td><td>프로그램 → 취업·사회 복귀 연계</td><td>본인 신청·방문이 출발점이라 진입 장벽이 큼</td></tr>
+    <tr><td class="k">Pymetrics (Harver)<small>기업 채용용 게임 평가</small></td><td>12~16개 미니게임(약 25분)으로 행동 특성 측정</td><td>게임 플레이 행동(주의·위험 감수·의사결정 등)</td><td>채용 기업의 성공 프로필과의 매칭</td><td>채용 절차 안에서 사용</td><td>구직 지원자가 채용 과정에서 응시하며, 자기탐색용 서비스가 아님</td></tr>
+    <tr class="me"><td class="k">Mindraft<small>이 서비스</small></td><td>5종 미니게임을 혼자·함께 경험(혼자 탐색 10분, 재도전·넘어가기 가능) <span class="tag now">현재</span></td><td>플레이 <b>행동 과정</b>(재도전·직접 실험·이탈)과 플레이 후 2문항 자기평가 <span class="tag now">현재</span></td><td>점수·적합도 없이 <b>CAN·LIKE·TRY·AVOID 근거 카드</b>와 AI 리포트 <span class="tag now">현재</span></td><td>직업 탐색 → 게임 밖 REAL QUEST → 근거 재축적, 상시 상담 창구 안내 <span class="tag now">현재</span> · 기관·지도 연계 <span class="tag plan">예정</span></td><td>집에서 닉네임만으로 시작, 신청·방문 불필요, 부담 큰 방식(AVOID)도 존중 <span class="tag now">현재</span></td></tr>
+  </table>
+
+  <div class="row c2">
+    <div>
+      <h2><span class="n">2</span>포지셔닝 <span class="sub">팀의 정성적 분류</span></h2>
+      <div class="map" style="margin-top:1.6mm">
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" font-family="NotoKR,'Malgun Gothic',sans-serif">
+  <rect x="34" y="8" width="358" height="250" fill="#fff" stroke="#dbe3ef"/>
+  <path d="M213 8V258M34 133H392" stroke="#dbe3ef" stroke-dasharray="4 4"/>
+  <text x="213" y="278" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">결과의 성격</text>
+  <text x="40" y="272" font-size="8.5" fill="#5b6b82">문항 응답·정보 제공</text>
+  <text x="388" y="272" text-anchor="end" font-size="8.5" fill="#5b6b82">직접 해 본 경험·실천</text>
+  <text transform="translate(12 133) rotate(-90)" text-anchor="middle" font-size="9.5" font-weight="700" fill="#334155">시작 방식</text>
+  <text x="40" y="20" font-size="8.5" fill="#5b6b82">집에서 익명·즉시</text>
+  <text x="40" y="252" font-size="8.5" fill="#5b6b82">신청·방문 필요</text>
+  <!-- points -->
+  <g font-size="9">
+    <circle cx="90" cy="58" r="7" fill="#94a3b8"/><text x="102" y="62" fill="#334155">커리어넷 검사</text>
+    <circle cx="86" cy="98" r="7" fill="#94a3b8"/><text x="98" y="102" fill="#334155">고용24 검사</text>
+    <circle cx="150" cy="36" r="7" fill="#94a3b8"/><text x="162" y="40" fill="#334155">온통청년</text>
+    <circle cx="190" cy="168" r="7" fill="#94a3b8"/><text x="202" y="172" fill="#334155">Pymetrics</text>
+    <circle cx="255" cy="222" r="7" fill="#94a3b8"/><text x="267" y="226" fill="#334155">청년도전·미래센터</text>
+    <circle cx="335" cy="52" r="10" fill="#2563eb"/><text x="335" y="80" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1d4ed8">Mindraft</text>
+  </g>
+</svg>
+      </div>
+      <p class="note" style="margin-top:1mm">Pymetrics는 경험 기반이지만 기업 채용 절차 안에서 쓰여 ‘시작 방식’ 축에서 중간에 두었습니다. 위치는 공식 지표가 아니라 팀의 정성적 분류입니다.</p>
+    </div>
+    <div>
+      <h2><span class="n">3</span>Mindraft의 차별점</h2>
+      <div class="box" style="margin-top:1.6mm">
+        <ul class="tight">
+          <li><b>과정이 근거가 된다</b> — 정답 여부가 아니라 재도전·직접 실험·이탈·선택 변경과 자기평가를 기록해 ‘잘하는 것 ≠ 좋아하는 것 ≠ 계속 시도하는 것’을 분리합니다.</li>
+          <li><b>낙인 없는 표현</b> — 점수·순위·적합도 %를 내지 않고, 덜 끌리는 방식(AVOID)도 선호 정보로 다룹니다. AI는 근거를 인용하고 진단을 하지 않도록 제한합니다.</li>
+          <li><b>이해에서 실천까지</b> — 직업 탐색과 게임 밖 REAL QUEST(개발자 Lv.1·2 실제 화면·서버 검증)로 이어지고, 결과가 다시 근거로 쌓입니다.</li>
+          <li><b>저강도 진입</b> — 신청·방문·검사지 없이 닉네임으로 시작하며, 힘들 때는 상담 창구(109·1577-0199·129·1388)를 상시 안내합니다.</li>
+        </ul>
+      </div>
+      <div class="box" style="margin-top:2mm">
+        <h4>한계와 관계 설정</h4>
+        <ul class="tight">
+          <li>Mindraft는 <b>표준화된 심리검사가 아니며</b> 진단·적성 판정을 하지 않습니다. 직업 DB는 12개 샘플이고 사용자 테스트는 <span class="tag plan">예정</span>입니다.</li>
+          <li>기존 서비스를 대체하지 않고 <b>고용24·커리어넷·청년미래센터·온통청년으로 이어 주는 앞 단계</b>를 목표로 하며, 공공 직업정보·기관 안내 연계는 <span class="tag plan">예정</span>입니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="src">
+    <b>출처(2026-09-30 확인)</b> 커리어넷 진로심리검사 www.career.go.kr/cnet/front/examen/examenMain.do · 고용24 직업심리검사 www.work24.go.kr(직업심리검사 안내 페이지) · 온통청년 www.youthcenter.go.kr, 정책브리핑 korea.kr/news/policyNewsView.do?newsId=148939880 · 청년도전지원사업 www.work24.go.kr/wk/g/b/1100/busiIntro.do · 청년미래센터 보건복지부 보도자료 mohw.go.kr(list_no=1482747) · Pymetrics/Harver harver.com/gamified-assessments. 각 서비스의 세부 기능·대상은 운영 기관 정책에 따라 바뀔 수 있으며, 표는 팀이 공개 자료로 요약한 것입니다.
+  </div>
+</section>
+</body>
+</html>

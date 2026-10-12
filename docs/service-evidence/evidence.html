@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Mindraft 서비스·기술 증빙</title>
+<style>
+@font-face{font-family:'NotoKR';src:url('file:///C:/Windows/Fonts/NotoSansKR-VF.ttf');font-weight:100 900}
+:root{--ink:#0f172a;--mut:#5b6b82;--line:#dbe3ef;--bg:#f4f7fc;--blue:#2563eb;--blue-d:#1d4ed8;--now:#047857;--now-bg:#d9f5e8;--plan:#a15c07;--plan-bg:#fdf0d2}
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-family:'NotoKR','Malgun Gothic',sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-size:8.4pt;line-height:1.45;background:#fff}
+.page{width:210mm;height:297mm;padding:10mm 11mm 9mm;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column;gap:3.2mm}
+.p1{gap:4.6mm}.p3{gap:2.4mm}
+.page:last-child{page-break-after:auto}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.6pt solid var(--blue);padding-bottom:2mm}
+.top h1{font-size:17pt;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.top h1 small{display:block;font-size:8.2pt;font-weight:500;color:var(--mut);letter-spacing:0;margin-top:.6mm}
+.top .meta{text-align:right;font-size:7.2pt;color:var(--mut);line-height:1.5}
+.top .meta b{color:var(--ink)}
+h2{font-size:10.6pt;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:2mm}
+h2 .n{background:var(--blue);color:#fff;border-radius:1.4mm;font-size:8pt;width:5.2mm;height:5.2mm;display:inline-flex;align-items:center;justify-content:center}
+h2 .sub{font-size:7.4pt;color:var(--mut);font-weight:500;margin-left:auto}
+.tag{display:inline-block;font-size:6.4pt;font-weight:700;border-radius:2mm;padding:.15mm 1.6mm;vertical-align:1px;white-space:nowrap}
+.tag.now{background:var(--now-bg);color:var(--now)}
+.tag.plan{background:var(--plan-bg);color:var(--plan)}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:2mm}
+.kpi{background:var(--bg);border-radius:2mm;padding:1.6mm 2mm;text-align:center}
+.kpi b{display:block;font-size:13pt;color:var(--blue-d);font-weight:800;line-height:1.15}
+.kpi span{font-size:6.6pt;color:var(--mut)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:1.8mm}
+.step{border:.7pt solid var(--line);border-radius:2mm;padding:1.8mm 2.2mm;position:relative;background:#fff}
+.step .k{font-size:6.6pt;font-weight:800;color:var(--blue);letter-spacing:.06em}
+.step h3{font-size:8.4pt;font-weight:800;margin:.2mm 0 .6mm}
+.step p{font-size:6.9pt;color:#334155;line-height:1.4}
+.step .tag{margin-top:1mm}
+.step:not(:last-child)::after{content:'›';position:absolute;right:-2.2mm;top:50%;transform:translateY(-50%);color:var(--blue);font-weight:800;font-size:11pt;z-index:2;background:#fff;line-height:1}
+.loop{font-size:7.2pt;color:var(--mut);text-align:center;margin-top:-.6mm}
+figure{margin:0}
+figure img{display:block;width:100%;border:.6pt solid var(--line);border-radius:1.6mm;object-fit:cover;object-position:left top}
+figcaption{font-size:6.8pt;color:#334155;margin-top:.8mm;line-height:1.35}
+figcaption b{font-weight:800;color:var(--ink)}
+.row{display:grid;gap:2.4mm}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c5{grid-template-columns:repeat(5,1fr);gap:1.6mm}
+.home-row{grid-template-columns:1.55fr 1fr}
+.shot4 img{aspect-ratio:.9}
+table{width:100%;border-collapse:collapse;font-size:7pt}
+th,td{border:.6pt solid var(--line);padding:.9mm 1.6mm;text-align:left;vertical-align:top}
+th{background:var(--bg);font-weight:800;font-size:6.9pt}
+td.k{font-weight:800;white-space:nowrap;background:#fafcff}
+ul.tight{list-style:none;font-size:7.1pt;line-height:1.42}
+ul.tight li{padding-left:2.6mm;position:relative;margin-bottom:.9mm}
+ul.tight li::before{content:'';position:absolute;left:.2mm;top:1.5mm;width:1.2mm;height:1.2mm;border-radius:50%;background:var(--blue)}
+ul.tight b{font-weight:800}
+.box{border:.7pt solid var(--line);border-radius:2mm;padding:2mm 2.4mm}
+.box h4{font-size:7.8pt;font-weight:800;margin-bottom:1mm;color:var(--blue-d)}
+.arch{border:.7pt solid var(--line);border-radius:2.2mm;background:#fbfcff;padding:1.4mm}
+.arch svg{display:block;width:100%;height:auto}
+.quote{background:var(--bg);border-left:1.2mm solid var(--blue);border-radius:1mm;padding:1.3mm 2mm;font-size:6.9pt;line-height:1.4;margin-top:1.2mm}
+.quote i{font-style:normal;font-weight:800;color:var(--blue-d)}
+.foot{margin-top:auto;font-size:6.5pt;color:var(--mut);display:flex;justify-content:space-between;border-top:.6pt solid var(--line);padding-top:1mm}
+.pass{display:flex;gap:2.4mm;align-items:stretch}
+.pass .big{background:var(--now-bg);color:var(--now);border-radius:2mm;padding:2mm 3.4mm;text-align:center;min-width:31mm;display:flex;flex-direction:column;justify-content:center}
+.pass .big b{font-size:19pt;font-weight:800;line-height:1.1}
+.pass .big span{font-size:6.8pt;font-weight:700}
+code{font-family:Consolas,NotoKR,monospace;font-size:.95em;letter-spacing:0}
+.note{font-size:6.6pt;color:var(--mut);line-height:1.4}
+</style>
+</head>
+<body>
+
+<!-- ───────────── PAGE 1 ───────────── -->
+<section class="page p1">
+  <div class="top">
+    <h1>Mindraft 서비스·기술 증빙<small>고립·구직단념 청년을 위한 ‘행동 근거’ 기반 AI 진로 탐색 서비스<br>2026 AI·디지털 기반 사회문제 해결 챌린지 · 분야 ① 서비스 개발</small></h1>
+    <div class="meta"><b>기준일 2026-09-30</b><br>mindraft.yoosung.dev<br>Cloud Run · 서울 리전</div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><b>5종</b><span>미니게임 (협동 포함)</span></div>
+    <div class="kpi"><b>13개</b><span>직무 행동 태그</span></div>
+    <div class="kpi"><b>12개</b><span>직업 후보 (MVP 샘플)</span></div>
+    <div class="kpi"><b>21/21</b><span>자동 테스트 통과</span></div>
+    <div class="kpi"><b>10회</b><span>계정당 AI 생성 한도</span></div>
+    <div class="kpi"><b>0개</b><span>적합도 %·진단 표현</span></div>
+  </div>
+
+  <h2><span class="n">1</span>서비스 흐름 — 게임 속 행동이 ‘나의 근거’가 되고, 다시 현실 행동으로 이어진다</h2>
+  <div class="flow">
+    <div class="step"><div class="k">STEP 1</div><h3>PLAY</h3><p>고장 난 작업실·다리 건축가·하루 상점·위기 대응 센터·마을 중재소. 혼자 탐색은 10분, 문제마다 최대 3번 시도, 넘어가기 가능.</p><span class="tag now">현재 구현</span></div>
+    <div class="step"><div class="k">STEP 2</div><h3>OBSERVE</h3><p>해결 품질·풀이 시간·재도전·직접 실험·선택 변경·중도 이탈과 플레이 후 2문항(다시 하고 싶은지·부담감) 기록.</p><span class="tag now">현재 구현</span></div>
+    <div class="step"><div class="k">STEP 3</div><h3>DISCOVER</h3><p>CAN·LIKE·TRY·AVOID 분리, 근거 타임라인, 근거를 인용하는 AI 자기이해 리포트.</p><span class="tag now">현재 구현</span></div>
+    <div class="step"><div class="k">STEP 4</div><h3>EXPLORE</h3><p>관찰된 직무 행동이 쓰이는 직업을 적합도 없이 제시. 직업 DB는 12개 샘플.</p><span class="tag now">구현</span> <span class="tag plan">공공 API 예정</span></div>
+    <div class="step"><div class="k">STEP 5</div><h3>REAL QUEST</h3><p>게임 밖 20분 미션. 개발자 Lv.1·Lv.2 심화, 그 외 직업은 AI 맞춤 탐색 미션. 결과가 다시 근거로 저장.</p><span class="tag now">현재 구현</span></div>
+  </div>
+  <p class="loop">↺ REAL QUEST 결과는 근거 보관함에 다시 쌓입니다 · 상시 ‘도움 연결’(109 · 1577-0199 · 129 · 1388) · 기록 활용 동의 · 본인 기록 삭제</p>
+
+  <h2><span class="n">2</span>실제 서비스 화면 — PLAY <span class="sub">모두 운영 중인 서비스의 캡처 (닉네임은 테스트 계정)</span></h2>
+  <div class="row home-row">
+    <figure><img src="img/home.jpg" style="aspect-ratio:1.72"><figcaption><b>① 홈</b> — “작은 경험으로 나의 가능성을 발견해요.” 혼자 시작하기 · 초대 코드 입장. 진입 부담을 낮추기 위해 닉네임만으로 시작(약 10분).</figcaption></figure>
+    <figure><img src="img/mode-select-bridge.jpg" style="aspect-ratio:1.72"><figcaption><b>② 시작 전 안내·모드 선택</b> — 게임 방법을 먼저 설명하고 혼자 탐색 / 함께 도전을 고릅니다. “정답보다 어떻게 풀었는지가 근거가 돼요.”</figcaption></figure>
+  </div>
+  <div class="row c5 shot4">
+    <figure><img src="img/game-workshop-crop.jpg"><figcaption><b>고장 난 작업실</b><br>규칙 추리·직접 실험 → 원인 추적, 가설 실험</figcaption></figure>
+    <figure><img src="img/game-bridge-crop.jpg"><figcaption><b>다리 건축가</b><br>하중·예산 조건 → 조건 분석, 설계, 비용 효율</figcaption></figure>
+    <figure><img src="img/game-shop-crop.jpg"><figcaption><b>하루 상점</b><br>수요·재고 결정 → 수요 예측, 비용 효율</figcaption></figure>
+    <figure><img src="img/game-crisis-crop.jpg"><figcaption><b>위기 대응 센터</b><br>위험도÷시간 → 우선순위, 신속 실행 (협동 가능)</figcaption></figure>
+    <figure><img src="img/game-mediation-crop.jpg"><figcaption><b>마을 중재소</b><br>이해관계 조율 → 공정한 합의 설계</figcaption></figure>
+  </div>
+  <p class="note">모든 게임 화면에 “틀려도 괜찮아요 — 다시 시도, 방법 바꾸기, 직접 실험 모두 TRY 근거로 기록돼요”가 표시됩니다. 점수·순위가 아니라 <b>과정</b>을 기록하는 것이 기존 진로 검사·경쟁형 게임과의 차이입니다.</p>
+
+  <div class="box">
+    <h4>왜 이 구조인가 — 사회현안과의 연결</h4>
+    <ul class="tight">
+      <li><b>진입 장벽 최소화</b>: 대면·신청·검사지 없이 집에서 익명 닉네임으로 한 판(약 10분)부터 시작합니다.</li>
+      <li><b>낙인 없는 자기이해</b>: 못하는 것을 찾지 않고, 덜 끌리는 방식(AVOID)도 ‘선호 정보’로 존중합니다. AI 시스템 프롬프트에 진단·적합도·규정 금지를 명시했습니다.</li>
+      <li><b>재고립 방지</b>: 근거 → 직업 탐색 → 게임 밖 REAL QUEST로 작은 실천을 반복하고, 힘들 때는 공공 상담 창구로 바로 연결합니다.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Mindraft · 서비스·기술 증빙</span><span>1 / 3</span></div>
+</section>
+
+<!-- ───────────── PAGE 2 ───────────── -->
+<section class="page p2">
+  <div class="top">
+    <h1>기술 아키텍처와 근거 카드<small>Mindraft · 서비스·기술 증빙</small></h1>
+    <div class="meta"><b>실선 = 현재 운영 중</b><br>점선 = 예정(미구현)</div>
+  </div>
+
+  <h2><span class="n">3</span>시스템 아키텍처 <span class="sub">Node.js 22 · Express 5 · Socket.IO 4 · Cloud Run + Firestore</span></h2>
+  <div class="arch">
+<svg viewBox="0 0 760 436" xmlns="http://www.w3.org/2000/svg" font-family="NotoKR, 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#a15c07" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  </defs>
+
+  <!-- Browser -->
+  <rect x="8" y="46" width="150" height="330" rx="10" fill="#fff" stroke="#93b0e8" stroke-width="1.4"/>
+  <text x="83" y="68" text-anchor="middle" font-size="12" font-weight="800" fill="#0f172a">청년 사용자 브라우저</text>
+  <text x="83" y="83" text-anchor="middle" font-size="8.5" fill="#5b6b82">모바일·PC 반응형 웹</text>
+  <g font-size="9.4" fill="#0f172a">
+    <rect x="18" y="96" width="130" height="50" rx="6" fill="#eef4ff"/><text x="26" y="112" font-weight="700">웹 SPA</text><text x="26" y="125" fill="#334155">Vanilla JS · Pretendard</text><text x="26" y="137" fill="#334155">5종 게임 UI · 근거 보관함</text>
+    <rect x="18" y="154" width="130" height="50" rx="6" fill="#eef4ff"/><text x="26" y="170" font-weight="700">Socket.IO 클라이언트</text><text x="26" y="183" fill="#334155">방·초대·매치 실시간 동기</text><text x="26" y="195" fill="#334155">재접속 시 방 복구(20초)</text>
+    <rect x="18" y="212" width="130" height="50" rx="6" fill="#eef4ff"/><text x="26" y="228" font-weight="700">Firebase Auth SDK</text><text x="26" y="241" fill="#334155">Google 로그인(선택)</text><text x="26" y="253" fill="#334155">esbuild 번들</text>
+    <rect x="18" y="270" width="130" height="50" rx="6" fill="#eef4ff"/><text x="26" y="286" font-weight="700">익명 세션 토큰</text><text x="26" y="299" fill="#334155">localStorage 무작위 토큰</text><text x="26" y="311" fill="#334155">서버에는 SHA-256 해시만</text>
+    <rect x="18" y="328" width="130" height="38" rx="6" fill="#fff" stroke="#c4d3ee" stroke-dasharray="3 3"/><text x="26" y="343" font-weight="700" fill="#334155">CSP · Origin 검사 대상</text><text x="26" y="356" fill="#5b6b82">script/connect 출처 제한</text>
+  </g>
+
+  <!-- Cloudflare -->
+  <rect x="176" y="168" width="104" height="82" rx="8" fill="#fff" stroke="#93b0e8" stroke-width="1.4"/>
+  <text x="228" y="188" text-anchor="middle" font-size="10" font-weight="800">Cloudflare</text>
+  <text x="228" y="201" text-anchor="middle" font-size="10" font-weight="800">Worker</text>
+  <text x="228" y="216" text-anchor="middle" font-size="8.2" fill="#334155">mindraft.yoosung.dev</text>
+  <text x="228" y="228" text-anchor="middle" font-size="8.2" fill="#334155">HTTP·WebSocket</text>
+  <text x="228" y="240" text-anchor="middle" font-size="8.2" fill="#334155">→ Cloud Run 프록시</text>
+  <path d="M158 209H176" stroke="#2563eb" stroke-width="1.6" marker-end="url(#a)"/>
+  <path d="M280 209H298" stroke="#2563eb" stroke-width="1.6" marker-end="url(#a)"/>
+  <text x="228" y="160" text-anchor="middle" font-size="8.2" fill="#2563eb" font-weight="700">HTTPS · WSS</text>
+
+  <!-- Cloud Run -->
+  <rect x="298" y="14" width="262" height="392" rx="12" fill="#f4f8ff" stroke="#2563eb" stroke-width="1.8"/>
+  <text x="429" y="34" text-anchor="middle" font-size="12" font-weight="800" fill="#1d4ed8">Google Cloud Run · Node.js 22 (Docker)</text>
+  <text x="429" y="47" text-anchor="middle" font-size="8.2" fill="#5b6b82">서울 · CPU 1 · 512MiB · 최대 1 인스턴스</text>
+  <g font-size="9.3">
+    <rect x="310" y="58" width="238" height="52" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="74" font-weight="800">server.js · 세션·방·매치 엔진</text><text x="319" y="87" fill="#334155">Express REST + Socket.IO. 방·진행 상태는 서버 메모리</text><text x="319" y="99" fill="#334155">서버 권위 검증 · 속도·크기 제한 · 소켓 인증</text>
+    <rect x="310" y="116" width="238" height="52" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="132" font-weight="800">lib/games.js · 게임 엔진</text><text x="319" y="145" fill="#334155">문제 생성 · 채점(해결 품질 0~1) · 재도전 힌트</text><text x="319" y="157" fill="#334155">정답은 출제 응답에 미포함</text>
+    <rect x="310" y="174" width="238" height="52" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="190" font-weight="800">lib/insight.js · 행동 분석</text><text x="319" y="203" fill="#334155">playRecord → CAN·LIKE·TRY·AVOID → 직무 행동 13종</text><text x="319" y="215" fill="#334155">→ 직업 후보(적합도 % 없음) · 규칙 기반 리포트</text>
+    <rect x="310" y="232" width="238" height="52" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="248" font-weight="800">lib/quests.js · REAL QUEST</text><text x="319" y="261" fill="#334155">개발자 Lv.1 서술 검증 · Lv.2 원인·코드 수정 서버 검증</text><text x="319" y="273" fill="#334155">직업별 탐색 미션(규칙 기반 기본안)</text>
+    <rect x="310" y="290" width="238" height="52" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="306" font-weight="800">lib/cloud.js · 저장소·인증 어댑터</text><text x="319" y="319" fill="#334155">Firestore 변경분 배치 저장 · ID 토큰 검증</text><text x="319" y="331" fill="#334155">AI 사용 횟수 트랜잭션(예약·환불)</text>
+    <rect x="310" y="348" width="238" height="48" rx="7" fill="#fff" stroke="#b9cdf5"/><text x="319" y="364" font-weight="800">lib/ai.js · AI 어댑터</text><text x="319" y="377" fill="#334155">가명 요약 JSON만 전달 · 15초 제한</text><text x="319" y="389" fill="#334155">Gemini → (Claude) → 규칙 기반 폴백</text>
+  </g>
+  <path d="M429 110V116M429 168V174M429 226V232M429 284V290M429 342V348" stroke="#93b0e8" stroke-width="1.2"/>
+
+  <!-- Right: Google services -->
+  <g font-size="9.3">
+    <rect x="580" y="212" width="172" height="52" rx="8" fill="#fff" stroke="#2563eb" stroke-width="1.4"/><text x="590" y="229" font-weight="800">Firebase Authentication</text><text x="590" y="242" fill="#334155">Google 로그인 · ID 토큰 서버 검증</text><text x="590" y="254" fill="#334155">계정 연결 시 익명 기록 병합</text>
+    <rect x="580" y="272" width="172" height="62" rx="8" fill="#fff" stroke="#2563eb" stroke-width="1.4"/><text x="590" y="289" font-weight="800">Cloud Firestore (서울)</text><text x="590" y="302" fill="#334155">profiles · aiUsage 컬렉션</text><text x="590" y="314" fill="#334155">보안 규칙 read/write 전면 차단</text><text x="590" y="326" fill="#334155">→ 서버만 서비스 계정으로 접근</text>
+    <rect x="580" y="342" width="172" height="64" rx="8" fill="#fff" stroke="#2563eb" stroke-width="1.4"/><text x="590" y="359" font-weight="800">Gemini API · Secret Manager</text><text x="590" y="372" fill="#334155">gemini-3.1-flash-lite (운영)</text><text x="590" y="384" fill="#334155">키는 Secret Manager로 주입</text><text x="590" y="396" fill="#334155">Claude 어댑터·규칙 기반 대체 가능</text>
+  </g>
+  <path d="M548 300H564V238H580" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#a)"/>
+  <path d="M548 316H580" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#a)"/>
+  <path d="M548 372H580" fill="none" stroke="#2563eb" stroke-width="1.6" marker-end="url(#a)"/>
+  <text x="564" y="367" text-anchor="middle" font-size="7.4" fill="#2563eb" font-weight="700">가명</text>
+
+  <!-- Planned (dashed) -->
+  <rect x="580" y="14" width="172" height="184" rx="8" fill="#fffaf0" stroke="#a15c07" stroke-width="1.4" stroke-dasharray="5 4"/>
+  <text x="590" y="32" font-size="9.8" font-weight="800" fill="#a15c07">예정 — 확장 지점</text>
+  <g font-size="8.9" fill="#4a3a1a">
+    <text x="590" y="50" font-weight="700">민관협력 지원 플랫폼 클라우드</text><text x="590" y="62" fill="#7a5a26">NCP·KT·NHN 컨테이너 이전</text><text x="590" y="73" fill="#7a5a26">(Dockerfile은 준비됨)</text>
+    <text x="590" y="93" font-weight="700">플랫폼 AI API</text><text x="590" y="105" fill="#7a5a26">ai.js 어댑터에 제공자 추가</text>
+    <text x="590" y="125" font-weight="700">간편 로그인 (카카오·네이버)</text>
+    <text x="590" y="145" font-weight="700">지도 API</text><text x="590" y="157" fill="#7a5a26">인근 청년센터·청년미래센터 안내</text>
+    <text x="590" y="177" font-weight="700">고용24·커리어넷 직업정보 API</text><text x="590" y="189" fill="#7a5a26">현재 12개 샘플 직업 → 공공 데이터</text>
+  </g>
+  <path d="M580 104H562" stroke="#a15c07" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#g)"/>
+
+  <!-- Data flow labels -->
+  <text x="8" y="422" font-size="8.4" fill="#5b6b82">데이터 흐름: 플레이·자기평가 → 행동 로그(최근 300건) → 근거 분석 → (가명 요약) → AI 리포트/미션 → 근거 보관함</text>
+  <text x="8" y="434" font-size="8.4" fill="#5b6b82">닉네임·토큰·기기 정보는 AI에 전달되지 않으며, 다른 사용자에게는 이름·아바타·XP·훈장만 공개됩니다.</text>
+</svg>
+  </div>
+
+  <div class="row c2">
+    <div class="box">
+      <h4>신뢰·안전 설계 <span class="tag now">현재 구현</span></h4>
+      <ul class="tight">
+        <li><b>서버 권위 검증</b> — 카운트다운 전·중복·지연 제출 거부, 시간 종료 시 근거 없는 XP 미지급, 잘못된 재료 거부.</li>
+        <li><b>개인정보</b> — 동의 없이는 프로필 생성 불가, 익명 토큰은 해시로 저장, 행동 기록·리포트는 본인 소켓에만 전송, 본인 기록 삭제 가능.</li>
+        <li><b>AI 사용</b> — 가명 요약만 입력, 프롬프트에 진단·적합도·규정 금지와 근거 인용 의무, 실패 시 규칙 기반 대체(횟수 미차감), 성공 생성만 계정당 10회.</li>
+        <li><b>남용 방지</b> — 소켓 초당 20회, 메시지 16KB, IP당 분당 30세션, AI 15초 간격, CSP·Origin 검사.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>운영 구성 <span class="tag now">현재 구현</span> <span class="tag plan">일부 예정</span></h4>
+      <table>
+        <tr><th>계층</th><th>구성</th></tr>
+        <tr><td class="k">프런트</td><td>Vanilla JS SPA, Socket.IO client, Firebase Auth SDK(esbuild 번들)</td></tr>
+        <tr><td class="k">백엔드</td><td>Node.js 22, Express 5, Socket.IO 4</td></tr>
+        <tr><td class="k">AI</td><td>Gemini 3.1 Flash-Lite(운영), Claude 어댑터, 규칙 기반 폴백</td></tr>
+        <tr><td class="k">저장·인증</td><td>Cloud Firestore, Firebase Auth(Google)</td></tr>
+        <tr><td class="k">배포</td><td>Docker → Cloud Run, Cloudflare Worker 도메인 연결 · 헬스체크 <code>/api/health</code></td></tr>
+        <tr><td class="k">이전 예정</td><td>민관협력 플랫폼 클라우드(NCP/KT/NHN)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2><span class="n">4</span>근거 카드 — 행동 로그가 CAN·LIKE·TRY·AVOID로 나뉘는 과정 <span class="sub">화면은 실제 계정의 8회 플레이 기록</span></h2>
+  <div class="row" style="grid-template-columns:1.12fr 1.12fr 1fr;align-items:start">
+    <figure><img src="img/vault-report.jpg" style="aspect-ratio:1.18"><figcaption><b>나의 근거 보관함</b> — 4분면 카드와 근거를 인용하는 AI 자기이해 리포트(“진단이나 적성 판정이 아니라 탐색 자료”).</figcaption></figure>
+    <figure><img src="img/vault-timeline.jpg" style="aspect-ratio:1.18"><figcaption><b>근거 타임라인 · 관찰된 직무 행동</b> — 카드마다 근거 문장·날짜가 남고, 행동은 상대 크기로만 표시(점수·순위 없음).</figcaption></figure>
+    <div>
+      <table>
+        <tr><th>분면</th><th>판정 규칙 (게임 단위, insight.js)</th></tr>
+        <tr><td class="k">CAN</td><td>완료 판의 평균 해결 품질 ≥ 75%</td></tr>
+        <tr><td class="k">LIKE</td><td>‘다시 해보고 싶다’ ≥ 4점, 또는 스스로 3회 이상 선택</td></tr>
+        <tr><td class="k">TRY</td><td>처음 틀린 뒤 재해결 ≥ 1 · 재도전 ≥ 2 · 직접 실험 ≥ 4 · 어려운 판 뒤 재도전 중 하나</td></tr>
+        <tr><td class="k">AVOID</td><td>의향 ≤ 2 · 부담 ≥ 4 · 최근 판 중도 이탈 중 하나 (약점이 아닌 선호 정보)</td></tr>
+      </table>
+      <div class="quote"><i>CAN</i> “고장 난 작업실에서 2회 플레이 평균 해결 품질 90% — 조건을 충족하는 해결이 반복적으로 관찰됐어요.”<br><i>TRY</i> “처음 틀린 문제 5개를 다시 시도해 해결했어요 (재도전 9회 · 직접 실험 1회).”</div>
+    </div>
+  </div>
+  <div class="foot"><span>Mindraft · 서비스·기술 증빙</span><span>2 / 3</span></div>
+</section>
+
+<!-- ───────────── PAGE 3 ───────────── -->
+<section class="page p3">
+  <div class="top">
+    <h1>직업 탐색·실천, 테스트 결과, 구현 범위<small>Mindraft · 서비스·기술 증빙</small></h1>
+    <div class="meta"><b>현재</b> = 코드·운영 서버에서 확인됨<br><b>예정</b> = 계획 단계, 미구현</div>
+  </div>
+
+  <h2><span class="n">5</span>직업 탐색과 REAL QUEST — 근거에서 현실 행동으로 <span class="sub">STEP 4·5 실제 화면</span></h2>
+  <div class="row c3">
+    <figure><img src="img/jobs.jpg" style="aspect-ratio:1.36"><figcaption><b>행동에서 직업으로</b> <span class="tag now">현재</span> — 적합도 점수 대신 “내가 해 본 행동이 쓰이는 직업”. 직업별 행동 태그와 REAL QUEST 진입 버튼. (직업 DB 12개는 샘플, 공공 API 연동은 <span class="tag plan">예정</span>)</figcaption></figure>
+    <figure><img src="img/quest-dev-lv1.jpg" style="aspect-ratio:1.36"><figcaption><b>개발자 REAL QUEST Lv.1</b> <span class="tag now">현재</span> — 실제 웹사이트의 문제를 찾아 재현 단계를 적고 개선안을 제안. 완료 시 근거 보관함에 기록.</figcaption></figure>
+    <figure><img src="img/quest-dev-lv2.jpg" style="aspect-ratio:1.36"><figcaption><b>Lv.2 버그 원인 찾고 코드 한 줄 수정</b> <span class="tag now">현재</span> — 오류 메시지를 읽고 원인을 고른 뒤 코드를 고쳐 실행. 원인·수정 모두 <b>서버에서 검증</b>.</figcaption></figure>
+  </div>
+
+  <h2><span class="n">6</span>테스트 결과 <span class="sub">2026-09-30 실행 · npm test (Node test runner)</span></h2>
+  <div class="pass">
+    <div class="big"><b>21 / 21</b><span>통과 · 실패 0<br>실행 시간 약 2.9초</span></div>
+    <table>
+      <tr><th style="width:36%">검증 영역</th><th style="width:9%">건수</th><th>확인한 내용</th></tr>
+      <tr><td class="k">5종 게임 완주</td><td>5</td><td>게임별 2인 완주 → 결과·능력치·재경기·프로필 복원</td></tr>
+      <tr><td class="k">서버 권위·부정 방지</td><td>4</td><td>카운트다운 전·중복 제출과 점수 위조 거부, 시간 종료 시 미응답 처리(근거 없는 XP 없음), 잘못된 다리 재료 거부, 반복 플레이 보상 감소</td></tr>
+      <tr><td class="k">실시간 방·연결</td><td>5</td><td>접속자 목록·초대·수락 동기화, 호스트 권한·준비·정원, 호스트 이양, 다중 탭·재접속 방 복구, 연결 끊김 후 유령 접속자 제거</td></tr>
+      <tr><td class="k">근거 분석</td><td>3</td><td>재도전 힌트가 정답을 숨김, TRY 근거·리포트 생성, 중도 이탈 → AVOID, ‘잘함≠좋아함’ 차이 발견·적합도 대신 행동 근거로 직업 제시</td></tr>
+      <tr><td class="k">REAL QUEST</td><td>1</td><td>Lv.1 서술 검증 → Lv.2 원인·수정 검증 → 근거 보관함 기록</td></tr>
+      <tr><td class="k">동의·인증·삭제</td><td>3</td><td>기록 활용 동의 없이는 프로필 생성 불가, 잘못된 토큰 소켓 거부, 삭제 후 같은 토큰 접속 불가</td></tr>
+    </table>
+  </div>
+  <p class="note"><b>운영 서버 점검</b> — 2026-09-30 <code>GET https://mindraft.yoosung.dev/api/health</code> → <code>{"ok":true,"ai":true}</code> (서버 가동·AI 연결 확인). 사용자 대상 사용성 테스트는 아직 실시하지 않았으며 <span class="tag plan">예정</span> 항목입니다.</p>
+
+  <h2><span class="n">7</span>현재 구현과 예정 구분</h2>
+  <table>
+    <tr><th style="width:15%">영역</th><th style="width:43%">현재 (구현·운영 중)</th><th>예정 (미구현)</th></tr>
+    <tr><td class="k">서비스 흐름</td><td><span class="tag now">현재</span> STEP 1~5 전 구간 동작. 혼자 탐색·함께 도전·협동, 플레이 후 자기평가, 근거 보관함, 직업 탐색, REAL QUEST</td><td><span class="tag plan">예정</span> 청년 사용자 테스트(2회) 결과로 문구·난이도 보정</td></tr>
+    <tr><td class="k">AI</td><td><span class="tag now">현재</span> Gemini 리포트·맞춤 미션, 근거 인용·금지 표현 프롬프트, 실패 시 규칙 기반 폴백, 계정당 10회 제한</td><td><span class="tag plan">예정</span> 근거 인용 비율·금지 표현 자동 검증, 플랫폼 제공 AI API 어댑터</td></tr>
+    <tr><td class="k">직업·퀘스트</td><td><span class="tag now">현재</span> 12개 샘플 직업, 개발자 Lv.1·2 심화, 그 외 직업은 AI 맞춤 탐색 미션</td><td><span class="tag plan">예정</span> 고용24·커리어넷 API 연동, 직군별 심화 퀘스트, 현직자 검수</td></tr>
+    <tr><td class="k">로그인·저장</td><td><span class="tag now">현재</span> 익명 닉네임 + Google 로그인(Firebase), Firestore 저장, 본인 기록 삭제</td><td><span class="tag plan">예정</span> 카카오·네이버 간편 로그인</td></tr>
+    <tr><td class="k">도움 연결</td><td><span class="tag now">현재</span> 상시 ‘도움’ 창구 안내(109 · 1577-0199 · 129 · 1388), 청년미래센터 안내 문구</td><td><span class="tag plan">예정</span> 지도 API 기반 인근 청년센터·고용센터 안내, 기관 자문 반영</td></tr>
+    <tr><td class="k">인프라</td><td><span class="tag now">현재</span> Cloud Run 서울 단일 인스턴스, 실시간 방 상태는 서버 메모리(배포·재시작 시 진행 중 방 종료)</td><td><span class="tag plan">예정</span> 민관협력 플랫폼 클라우드로 컨테이너 이전, 방 상태 외부화(다중 인스턴스)</td></tr>
+    <tr><td class="k">협력·확산</td><td>—</td><td><span class="tag plan">예정</span> 대학일자리플러스센터·지역 청년센터 파일럿, 기관용 대시보드</td></tr>
+  </table>
+  <p class="note">※ 12개 직업 DB와 직무 설명은 MVP 샘플입니다. 이 서비스는 진단·적성 판정·적합도 산출을 하지 않으며, 공공 지원기관을 대체하지 않고 그 이전 단계의 저강도 온라인 진입로를 목표로 합니다.</p>
+  <div class="row c2">
+    <div class="box">
+      <h4>재현·확인 방법 <span class="tag now">현재</span></h4>
+      <ul class="tight">
+        <li>공개 서비스: <code>https://mindraft.yoosung.dev</code> — 닉네임만으로 입장, 상단 ‘도움’에서 상담 창구 확인.</li>
+        <li>자동 테스트: 저장소에서 <code>npm test</code> → 21개 통과. 공개 서버 통신 확인 스크립트 <code>npm run test:public</code> 보유.</li>
+        <li>구성 근거: <code>server.js</code>, <code>lib/*.js</code>, <code>Dockerfile</code>, <code>cloudflare/worker.js</code>, <code>docs/google-cloud-deploy.md</code>.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>효과 측정 계획 <span class="tag plan">예정</span></h4>
+      <ul class="tight">
+        <li>지표: 첫 플레이 완료율 · 자기평가 응답률 · 7일 재방문율 · REAL QUEST 완료율 · 리포트 도움 응답률 · 도움 연결 클릭 수.</li>
+        <li>현재는 개인별 행동 로그(최근 300건)만 저장하며, 익명 집계·대시보드와 청년 사용자 테스트는 아직 구현·실시 전입니다.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Mindraft · 서비스·기술 증빙 · 기준일 2026-09-30</span><span>3 / 3</span></div>
+</section>
+</body>
+</html>

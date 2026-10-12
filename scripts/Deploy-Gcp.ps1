@@ -19,7 +19,7 @@ if ($LASTEXITCODE -ne 0) { throw '필요한 Google Cloud API를 활성화하지 
 
 & gcloud iam service-accounts describe $ServiceAccount --project $ProjectId *> $null
 if ($LASTEXITCODE -ne 0) {
-  & gcloud iam service-accounts create mindraft-run --display-name 'Mindraft Cloud Run' --project $ProjectId
+  & gcloud iam service-accounts create mindraft-run --display-name 'Tallo Cloud Run' --project $ProjectId
   if ($LASTEXITCODE -ne 0) { throw 'Cloud Run 서비스 계정을 만들지 못했습니다.' }
 }
 & gcloud projects add-iam-policy-binding $ProjectId --member "serviceAccount:$ServiceAccount" --role roles/datastore.user --quiet | Out-Null

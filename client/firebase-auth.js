@@ -15,7 +15,7 @@ const ready = (async () => {
   return false;
 });
 
-window.MindraftAuth = {
+window.TalloAuth = {
   ready,
   currentUser: () => auth?.currentUser || null,
   idToken: async () => auth?.currentUser?.getIdToken() || null,

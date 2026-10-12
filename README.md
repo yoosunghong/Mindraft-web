@@ -1,4 +1,4 @@
-# MINDRAFT — 경험하며 발견하는 진로 탐색
+# TALLO — 경험하며 발견하는 진로 탐색
 
 > 고립·구직단념 위기에 놓인 청년이 **다양한 '일의 방식'을 미니게임으로 부담 없이 경험**하고, AI가 플레이 행동을 **CAN·LIKE·TRY·AVOID**로 나눠 **자기이해의 근거**를 쌓은 뒤, 이를 **직업 탐색과 게임 밖 실천(REAL QUEST)**, 필요하면 **공공 지원기관 연결**까지 이어 주는 웹 서비스입니다.
 
@@ -12,29 +12,29 @@
 
 | 단계 | 사용자 경험 | 구현 |
 |---|---|---|
-| 1. PLAY | 5가지 일의 방식을 미니게임으로 경험. **혼자 탐색**(10분, 문제마다 최대 3번 시도, 넘어가기 가능) / 함께 도전(2~4인) / 협동 | `server.js` 매치·재도전·넘어가기, `lib/games.js` 문제·평가·힌트 |
+| 1. PLAY | 4가지 일의 방식을 미니게임으로 경험. **혼자 탐색**(4분, 라운드마다 최대 3번 시도, 넘어가기 가능) / 함께 도전(2~4인) / 협동 | `server.js` 매치·재도전·넘어가기, `lib/games.js` 문제·평가·힌트 |
 | 2. OBSERVE | 해결 품질, 재도전, 처음 틀린 뒤 다시 해결, 직접 실험, 선택 변경, 중간 이탈, 플레이 후 2문항 자기평가(다시 하고 싶은지·부담감)를 기록 | `lib/insight.js` `playRecord`, `match:reflect` |
 | 3. DISCOVER | CAN·LIKE·TRY·AVOID 분리, "잘하는 것 ≠ 좋아하는 것" 차이 발견, 근거 타임라인, AI 자기이해 리포트 | `analyze`, `ruleReport`, `lib/ai.js` |
-| 4. EXPLORE | 13가지 직무 행동 ↔ 12개 직업(MVP 샘플) 연결. 적합도 % 없이 "관찰된 행동이 쓰이는 직업"으로 제시 | `BEHAVIORS`, `JOBS`, `exploreJobs` |
+| 4. EXPLORE | 16가지 직무 행동 ↔ 12개 직업(MVP 샘플) 연결. 적합도 % 없이 "관찰된 행동이 쓰이는 직업"으로 제시 | `BEHAVIORS`, `JOBS`, `exploreJobs` |
 | 5. REAL QUEST | 개발자 심화 퀘스트 Lv.1(실제 웹사이트 문제 재현·기록) · Lv.2(버그 원인 가설→코드 수정, 서버 검증). 그 밖의 직업은 AI 맞춤 탐색 미션 | `lib/quests.js`, `quest:*` 이벤트 |
 
 안전장치: 진단·적합도 표현 금지(AI 시스템 프롬프트 포함), 상시 "도움 연결"(109·1577-0199·129·1388, 청년미래센터 안내), 기록 활용 동의, 가명 처리된 AI 입력, 본인 플레이 기록 삭제. 계정별 AI 사용 횟수는 남용 방지를 위해 유지합니다.
 
 ## 내 PC에서 실행 / 중지
 
-Node.js 22 이상, `cloudflared`, 그리고 `.runtime/tunnel.yml` 및 tunnel credentials 파일이 필요합니다. 이 PC에서는 `Start-Mindraft-Public.bat`을 더블클릭하면 서버와 기존 `mindraft-web` Cloudflare Tunnel을 실행합니다. PowerShell을 직접 열어 실행해도 됩니다.
+Node.js 22 이상, `cloudflared`, 그리고 `.runtime/tunnel.yml` 및 tunnel credentials 파일이 필요합니다. 이 PC에서는 `Start-Tallo-Public.bat`을 더블클릭하면 서버와 기존 `mindraft-web` Cloudflare Tunnel을 실행합니다. PowerShell을 직접 열어 실행해도 됩니다.
 
 ```powershell
 cd D:\Github\Mindraft-web
 npm install --cache .runtime/npm-cache
-.\Start-Mindraft.ps1             # PC 서버 + Cloudflare Tunnel
-.\Start-Mindraft.ps1 -LocalOnly  # 로컬 접속만
-.\Stop-Mindraft.ps1
+.\Start-Tallo.ps1             # PC 서버 + Cloudflare Tunnel
+.\Start-Tallo.ps1 -LocalOnly  # 로컬 접속만
+.\Stop-Tallo.ps1
 npm run dev                     # 개발용 전경 실행 (기존 서버 먼저 중지)
-npm test                        # 21개 테스트
+npm test                        # 게임 규칙·멀티플레이·리포트 검증
 ```
 
-실행 후 로컬 주소는 `http://localhost:3210`, 공개 주소는 `https://mindraft.yoosung.dev`입니다. 중지할 때는 `Stop-Mindraft.ps1`을 실행하세요. 실행 로그는 `.runtime/server.log`, `.runtime/tunnel.log`에 기록됩니다.
+실행 후 로컬 주소는 `http://localhost:3210`, 공개 주소는 `https://mindraft.yoosung.dev`입니다. 중지할 때는 `Stop-Tallo.ps1`을 실행하세요. 실행 로그는 `.runtime/server.log`, `.runtime/tunnel.log`에 기록됩니다.
 
 ### Cloudflare 라우팅 전환
 
@@ -62,8 +62,8 @@ Gemini 키가 있으면 Gemini를 우선 사용합니다. AI 호출이 실패하
 ### 컨테이너 배포 (민관협력 지원 플랫폼 클라우드)
 
 ```bash
-docker build -t mindraft .
-docker run -d -p 3210:3210 -v mindraft-data:/data -e DATA_BACKEND=local -e ALLOWED_ORIGINS=https://<배포도메인> mindraft
+docker build -t tallo .
+docker run -d -p 3210:3210 -v tallo-data:/data -e DATA_BACKEND=local -e ALLOWED_ORIGINS=https://<배포도메인> tallo
 ```
 
 ### Google Cloud 배포
@@ -100,7 +100,7 @@ docker run -d -p 3210:3210 -v mindraft-data:/data -e DATA_BACKEND=local -e ALLOW
 
 ### 로컬 터널 설정
 
-터널 이름: `mindraft-web`, ID: `94449648-004e-4731-b2c5-060c76cd8a8c`. 현재 PC의 `.runtime/tunnel.yml`과 `.runtime/tunnel-credentials.json`에 설정이 있으며 인증 파일은 Git에서 제외했습니다.
+터널 이름: `tallo-web`, ID: `94449648-004e-4731-b2c5-060c76cd8a8c`. 현재 PC의 `.runtime/tunnel.yml`과 `.runtime/tunnel-credentials.json`에 설정이 있으며 인증 파일은 Git에서 제외했습니다.
 
 ```yaml
 tunnel: 94449648-004e-4731-b2c5-060c76cd8a8c
@@ -114,8 +114,32 @@ ingress:
 ```powershell
 Invoke-RestMethod http://localhost:3210/api/health
 Invoke-RestMethod https://mindraft.yoosung.dev/api/health
-cloudflared tunnel info mindraft-web
+cloudflared tunnel info tallo-web
 Get-Content .runtime/server-error.log -Tail 30
 ```
 
 위 터널 설정은 현재 공개 도메인에 사용 중입니다. PC가 켜져 있고 서버와 터널이 실행되어 있어야 외부 접속이 가능합니다.
+
+
+## Tallo 게임 리팩토링 (2026-10-12)
+
+현재 카탈로그는 `robot`, `cargo`, `signal`, `cafe` 4종입니다. 기존 5종의 게임 생성·판정·조작 UI는 교체했습니다. 각 게임은 조작 연습과 하·중·상 3라운드로 구성됩니다. 혼자 탐색, 2~4인 경쟁, 2~4인 협동 모두 지원하며 한 판의 제한 시간은 4분입니다. 점수는 서버가 정확도를 기준으로 계산하고, 순서 기억 정확도와 리듬 간격 오차는 별도로 기록합니다.
+
+- 회로: 연결된 분기 전체의 소비 전력, 필수 장치와 고장 회로를 판정합니다. 생성 시 전체 방향 조합을 탐색해 해법·최적 전력·최소 회전 수를 검증합니다.
+- 화물: 4×4 / 5×5 / 6×6 화물칸, 회전과 배치, 미리보기, 재배치 제한, 장애물을 제공합니다. 연결된 블록으로 공간을 분할해 해법을 보장하며 테스트는 독립적인 정확 덮기 탐색으로 검증합니다. 선택 후 탭, 드래그, R 회전, 방향키와 Enter를 지원합니다.
+- 신호: 3 / 5 / 7개 목표 신호, 방해 신호, 상 난이도 중간 규칙 전환을 제공합니다. 1~4 키나 화면 버튼으로 입력하며 시각 박자와 선택적 효과음이 있습니다.
+- 카페: 1 / 2 / 3개 주문, 상품 수량, 한정된 재고, 상 난이도 마감과 처리 우선순위를 판정합니다. 탭 또는 드래그로 트레이를 채웁니다. 하 난이도에는 개별 주문 마감이 없어 수량 정확도에 집중할 수 있습니다.
+
+`public/puzzles.js`는 화면과 서버가 공유하는 규칙, `lib/arcade.js`는 생성·서버 판정, `public/arcade.js`는 조작과 연습, `public/tallo.css`는 2.5D 스타일입니다. 그래픽은 사전 렌더링된 3D 아트와 CSS 깊이·조명·상호작용으로 구성되며 실시간 3D 엔진을 사용하지 않습니다.
+
+문제 ID·난이도·문제 구성·서버 타임스탬프·조작 순서·제출·실패 후 수정 이력과 게임별 지표가 프로필에 저장됩니다. 중단 시 진행 중이던 조작도 보존합니다. 요약 기록은 최대 300건이며 프로필 크기가 600KB를 넘으면 오래된 상세 조작을 요약으로 압축합니다. 최근 결과에는 난이도별 정확도, 소요 시간, 행동 피드백이 표시됩니다.
+
+서비스 브랜드, 패키지, 파비콘, 로그인 클라이언트 이름과 실행 스크립트는 Tallo로 변경했습니다. 기존 게스트 저장 키는 새 `tallo-token`으로 자동 이전합니다. 기존 배포 도메인, Cloudflare 터널 이름, 클라우드 서비스 ID와 저장소 경로는 연결 호환성을 위해 유지합니다. 디자인 레퍼런스와 과거 제출 증빙 파일은 원본으로 보존합니다.
+
+### 아트 에셋
+
+내장 imagegen으로 생성하고 `public/art/tallo/`에 저장했습니다. 아래는 사용한 프롬프트의 아트 지시사항입니다.
+
+- `hero.png`: main-view 레퍼런스를 바탕으로 흰색·아이스블루 미래 작업실, 오른쪽에 별을 든 흰 로봇, 왼쪽에 제목을 위한 밝은 여백. 부드러운 세라믹 3D 렌더, 도시로 향하는 포털, 식물과 햇살. 글자·버튼·UI 제외.
+- `worlds.png`: 동일한 2×2 구획의 로봇 정비실 / 라벤더 우주 화물 터미널 / 반딧불이 숲 / 크림·살구 카페. 둥근 형태, 물리적 재질, 공간감과 영화적 조명. 게임 조작을 올릴 중앙 여백, 글자·프레임 제외.
+- `products.png`: 투명한 2×2 아이템 시트. 아메리카노 컵, 골든 크루아상, 딸기 라떼, 토스트 샌드위치. 3/4 시점의 부드러운 고품질 3D 음식 아이콘, 따뜻한 조명, 글자·UI 제외.

@@ -45,4 +45,4 @@ if (-not $LocalOnly -and -not $state.ContainsKey('tunnel')) {
 }
 Write-Host 'Local:  http://localhost:3210'
 if (-not $LocalOnly) { Write-Host 'Public: https://mindraft.yoosung.dev' }
-Write-Host 'Mindraft is running in the background. Stop with .\Stop-Mindraft.ps1'
+Write-Host 'Tallo is running in the background. Stop with .\Stop-Tallo.ps1'

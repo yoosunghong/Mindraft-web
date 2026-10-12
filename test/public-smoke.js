@@ -1,7 +1,7 @@
 // Explicit live test: creates two temporary guest identities, then leaves their room.
 import assert from 'node:assert/strict';
 import { io } from 'socket.io-client';
-const url=process.env.BASE_URL||'https://mindraft.yoosung.dev';
+const url=process.env.BASE_URL||'http://127.0.0.1:3210';
 const clients=[];
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn){for(let i=0;i<100;i++){if(fn())return;await wait(100);}throw Error('Public state synchronization timed out');}
@@ -16,12 +16,12 @@ try{
   const health=await(await fetch(url+'/api/health')).json();assert.equal(health.ok,true);
   const a=await client('연결 확인 A'),b=await client('연결 확인 B');
   await until(()=>a.lobby.users.some(p=>p.id===b.profile.id));
-  const created=await a.send('room:create',{name:'외부 통신 검증',game:'crisis',mode:'coop'});assert.equal(created.ok,true);
+  const created=await a.send('room:create',{name:'외부 통신 검증',game:'cafe',mode:'coop'});assert.equal(created.ok,true);
   assert.equal((await a.send('room:invite',{id:b.profile.id})).ok,true);await until(()=>b.invite);
   assert.equal((await b.send('room:join',{id:b.invite.roomId})).ok,true);
   await b.send('room:ready');assert.equal((await a.send('match:start')).ok,true);await until(()=>a.match&&b.match);
   assert.deepEqual(a.match.task,b.match.task);await wait(Math.max(0,a.match.startAt-Date.now())+100);
-  const urgency=a.match.task.incidents.map(v=>v.severity/v.minutes),answer=urgency.indexOf(Math.max(...urgency));
+  const answer={served:a.match.task.orders.toSorted((a,b)=>a.priority-b.priority).map(o=>({id:o.id,items:o.items,at:0}))};
   assert.equal((await a.send('match:answer',{matchId:a.match.id,index:0,answer})).ok,true);
   await until(()=>b.match.players.find(p=>p.id===a.profile.id).score>0);
   await a.send('room:leave');await b.send('room:leave');
